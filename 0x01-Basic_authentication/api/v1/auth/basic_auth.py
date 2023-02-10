@@ -10,6 +10,7 @@ from models.user import User
 class BasicAuth(Auth):
     ''' BasicAuth class
     '''
+
     def extract_base64_authorization_header(
             self, authorization_header: str) -> str:
         ''' def extract base64 authorization header '''
@@ -24,7 +25,7 @@ class BasicAuth(Auth):
             self, base64_authorization_header: str) -> str:
         ''' def decode base 64 authorization '''
         if base64_authorization_header and type(
-                    base64_authorization_header) == str:
+                base64_authorization_header) == str:
             try:
                 x = base64_authorization_header.encode('utf-8')
                 base = base64.b64decode(x)
@@ -39,8 +40,8 @@ class BasicAuth(Auth):
         if c and type(c) == str and ":" in c:
             mail = c.split(':')[0]
             password = "".join(c.split(':', 1)[1:])
-            return(mail, password)
-        return(None, None)
+            return (mail, password)
+        return (None, None)
 
     def user_object_from_credentials(
             self, user_email: str, user_pwd: str) -> TypeVar('User'):
